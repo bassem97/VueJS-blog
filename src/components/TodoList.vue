@@ -1,7 +1,7 @@
 <script lang="ts">
 import { useTodoListStore } from '@/stores/todoList'
 import { storeToRefs } from 'pinia'
-import { defineComponent, ref } from 'vue'
+import { computed, defineComponent, reactive, ref } from 'vue'
 
 export default defineComponent({
   name: 'TodoList',

@@ -8,7 +8,7 @@ export default defineComponent({
   },
   setup(props) {
     return {
-      event: props.event
+      props
     }
   }
 })

@@ -1,26 +1,26 @@
 <script lang="ts">
-import { ref, defineComponent } from 'vue'
+import { ref, defineComponent, reactive } from 'vue'
 import type Todo from '@/typings/Todo'
 import { useTodoListStore } from '@/stores/todoList'
 
 export default defineComponent({
   name: 'TodoForm',
   setup() {
-    const todo = ref<Todo>({
-      title: ''
-    })
-
-    const todoStore = ref(useTodoListStore())
-
+    const todoStore = useTodoListStore()
     const addTodoAndClear = (todo: Todo) => {
       if (!todo.title) return
-      todoStore.value.addTodo(todo)
+      todoStore.addTodo(todo)
       todo.title = ''
     }
+    const reactiveProps = reactive({
+      todo: {
+        title: ''
+      },
+      addTodoAndClear
+    })
 
     return {
-      todo,
-      addTodoAndClear
+      ...reactiveProps
     }
   }
 })

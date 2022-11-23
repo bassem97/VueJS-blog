@@ -1,6 +1,6 @@
 <script lang="ts">
 import EventCard from '@/components/EventCard.vue'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import { type Event } from '@/typings/Event'
 import EventService from '@/services/EventService'
 import type EventResponse from '@/typings/EventResponse'
@@ -9,14 +9,17 @@ export default defineComponent({
   name: 'EventList',
   components: { EventCard },
   setup() {
-    const events = ref<Event[]>([])
+    const reactiveProps = reactive({
+      events: [] as Event[]
+    })
 
-    EventService.getEvents().then((response: EventResponse) => {
-      events.value = response.data
+    onMounted(async () => {
+      const response: EventResponse = await EventService.getEvents()
+      reactiveProps.events = response.data
     })
 
     return {
-      events
+      ...toRefs(reactiveProps)
     }
   }
 })

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref, toRefs } from 'vue'
 import EventService from '@/services/EventService'
 import type { Event } from '@/typings/Event'
 import EventResponse from '@/typings/EventResponse'
@@ -9,7 +9,8 @@ export default defineComponent({
   setup(props) {
     const event = ref<Event | undefined>(undefined)
 
-    EventService.getEvent(props.id).then((response: EventResponse) => {
+    onMounted(async () => {
+      const response: EventResponse = await EventService.getEvent(props.id)
       event.value = response.data
     })
 
