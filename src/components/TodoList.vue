@@ -1,11 +1,22 @@
-<script setup lang="ts">
+<script lang="ts">
 import { useTodoListStore } from '@/stores/todoList'
 import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
-const todoStore = ref(useTodoListStore())
-const { todoList } = storeToRefs(todoStore.value)
-const { toggleCompleted, deleteTodoById } = todoStore.value
+export default defineComponent({
+  name: 'TodoList',
+  setup() {
+    const todoStore = ref(useTodoListStore())
+    const { todoList } = storeToRefs(todoStore.value)
+    const { toggleCompleted, deleteTodoById } = todoStore.value
+
+    return {
+      todoList,
+      toggleCompleted,
+      deleteTodoById
+    }
+  }
+})
 </script>
 
 <template>

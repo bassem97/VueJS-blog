@@ -1,6 +1,6 @@
 <script lang="ts">
 import EventCard from '@/components/EventCard.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { type Event } from '@/typings/Event'
 import EventService from '@/services/EventService'
 import type EventResponse from '@/typings/EventResponse'
@@ -8,15 +8,16 @@ import type EventResponse from '@/typings/EventResponse'
 export default defineComponent({
   name: 'EventList',
   components: { EventCard },
-  data() {
-    return {
-      events: [] as Event[]
-    }
-  },
-  created() {
+  setup() {
+    const events = ref<Event[]>([])
+
     EventService.getEvents().then((response: EventResponse) => {
-      this.events = response.data
+      events.value = response.data
     })
+
+    return {
+      events
+    }
   }
 })
 </script>

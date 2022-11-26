@@ -1,21 +1,32 @@
-<script setup lang="ts">
+<script lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import type Route from '@/typings/Route'
+import { defineComponent } from 'vue'
 
-const routes: Route[] = [
-  {
-    label: 'Events',
-    name: 'event-list'
-  },
-  {
-    label: 'About',
-    name: 'about'
-  },
-  {
-    label: 'Todos',
-    name: 'todos'
+export default defineComponent({
+  name: 'App',
+  components: { RouterLink, RouterView },
+  setup() {
+    const routes: Route[] = [
+      {
+        label: 'Events',
+        name: 'event-list'
+      },
+      {
+        label: 'About',
+        name: 'about'
+      },
+      {
+        label: 'Todos',
+        name: 'todos'
+      }
+    ]
+
+    return {
+      routes
+    }
   }
-]
+})
 </script>
 
 <template>

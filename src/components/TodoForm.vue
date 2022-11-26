@@ -1,19 +1,29 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<script lang="ts">
+import { ref, defineComponent } from 'vue'
 import type Todo from '@/typings/Todo'
 import { useTodoListStore } from '@/stores/todoList'
 
-const todo = ref<Todo>({
-  title: ''
+export default defineComponent({
+  name: 'TodoForm',
+  setup() {
+    const todo = ref<Todo>({
+      title: ''
+    })
+
+    const todoStore = ref(useTodoListStore())
+
+    const addTodoAndClear = (todo: Todo) => {
+      if (!todo.title) return
+      todoStore.value.addTodo(todo)
+      todo.title = ''
+    }
+
+    return {
+      todo,
+      addTodoAndClear
+    }
+  }
 })
-
-const todoStore = ref(useTodoListStore())
-
-const addTodoAndClear = (todo: Todo) => {
-  if (!todo.title) return
-  todoStore.value.addTodo(todo)
-  todo.title = ''
-}
 </script>
 
 <template>

@@ -5,6 +5,11 @@ export default defineComponent({
   name: 'EventCard',
   props: {
     event: Object as PropType<Event>
+  },
+  setup(props) {
+    return {
+      event: props.event
+    }
   }
 })
 </script>

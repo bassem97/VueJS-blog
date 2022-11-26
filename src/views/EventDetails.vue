@@ -1,20 +1,21 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import EventService from '@/services/EventService'
 import type { Event } from '@/typings/Event'
 import EventResponse from '@/typings/EventResponse'
 
 export default defineComponent({
   props: ['id'],
-  data() {
-    return {
-      event: {} as Event
-    }
-  },
-  created() {
-    EventService.getEvent(this.id).then((response: EventResponse) => {
-      this.event = response.data
+  setup(props) {
+    const event = ref<Event | undefined>(undefined)
+
+    EventService.getEvent(props.id).then((response: EventResponse) => {
+      event.value = response.data
     })
+
+    return {
+      event
+    }
   }
 })
 </script>
