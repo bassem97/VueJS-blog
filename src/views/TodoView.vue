@@ -1,16 +1,12 @@
 <script>
 import TodoForm from '@/components/TodoForm.vue'
 import TodoList from '@/components/TodoList.vue'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'TodoView',
-  components: { TodoList, TodoForm },
-  setup() {
-    return {
-      // event
-    }
-  }
-}
+  components: { TodoList, TodoForm }
+})
 </script>
 
 <template>
