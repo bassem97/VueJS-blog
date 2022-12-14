@@ -8,7 +8,7 @@ export default defineComponent({
   props: ['id'],
   data() {
     return {
-      event: null as Event | null
+      event: {} as Event
     }
   },
   created() {
