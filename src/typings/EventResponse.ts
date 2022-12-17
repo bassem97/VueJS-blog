@@ -1,5 +1,5 @@
 import type { Event } from '@/typings/Event'
 
 export default interface EventResponse {
-  data: Event[] | null
+  data: Event | Event[] | null
 }

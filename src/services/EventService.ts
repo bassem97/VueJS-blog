@@ -16,7 +16,7 @@ export default {
   getEvents(): Promise<EventResponse> {
     return axiosInstance.get('/events')
   },
-  getEvent(id: number): Promise<Event> {
+  getEvent(id: number): Promise<EventResponse> {
     return axiosInstance.get(`/events/${id}`)
   }
 }

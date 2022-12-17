@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import EventListView from '@/views/EventList.vue'
-import EventDetailsView from '@/views/EventDetailsView.vue'
+import EventDetailsView from '@/views/EventDetails.vue'
 import TodoView from '@/views/TodoView.vue'
 
 const routes: Array<RouteRecordRaw> = [

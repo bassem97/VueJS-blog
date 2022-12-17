@@ -1,20 +1,12 @@
 <script lang="ts">
-import { toRefs } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
-interface Props {
-  event: Event
-}
-export default {
+export default defineComponent({
   name: 'EventCard',
   props: {
-    event: Event
-  },
-  setup(props: Props) {
-    const { event } = toRefs(props)
-    console.log(event.value)
-    return event
+    event: Object as PropType<Event>
   }
-}
+})
 </script>
 
 <template>
