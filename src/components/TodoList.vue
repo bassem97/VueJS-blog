@@ -5,13 +5,14 @@ import { ref } from 'vue'
 
 const todoStore = ref(useTodoListStore())
 const { todoList } = storeToRefs(todoStore.value)
-const { toggleCompleted } = todoStore.value
+const { toggleCompleted, deleteTodoById } = todoStore.value
 </script>
 
 <template>
   <div v-for="todo in todoList" :key="todo.id" class="todo">
     <h2 :class="{ completed: todo.completed }">{{ todo.title }}</h2>
     <span @click.stop="toggleCompleted(todo.id)">&#10004;</span>
+    <span @click.stop="deleteTodoById(todo.id)">&#10060;</span>
   </div>
 </template>
 
@@ -25,6 +26,13 @@ const { toggleCompleted } = todoStore.value
   cursor: pointer;
   border: 1px solid #39495c;
   margin-bottom: 18px;
+  margin-top: 18px;
+  background-color: #f7f9fa;
+}
+
+span {
+  margin: 0 10px;
+  cursor: pointer;
 }
 
 .completed {

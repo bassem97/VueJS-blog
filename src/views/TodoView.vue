@@ -20,3 +20,14 @@ export default {
     <TodoList />
   </div>
 </template>
+
+<style scoped>
+.todo {
+  padding: 5vh;
+  min-height: 100vh;
+  width: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
