@@ -1,9 +1,10 @@
 <script>
 import TodoForm from '@/components/TodoForm.vue'
+import TodoList from '@/components/TodoList.vue'
 
 export default {
   name: 'TodoView',
-  components: { TodoForm },
+  components: { TodoList, TodoForm },
   setup() {
     return {
       // event
@@ -16,6 +17,6 @@ export default {
   <div class="todo">
     <h1>Todo List</h1>
     <TodoForm />
-    <!--   <TodoList/>-->
+    <TodoList />
   </div>
 </template>
