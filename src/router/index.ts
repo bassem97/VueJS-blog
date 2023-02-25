@@ -3,6 +3,10 @@ import EventListView from '@/views/EventListView.vue'
 import EventDetailsView from '@/views/EventDetailsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
+  // {
+  //   path: '*',
+  //   component: NotFoundView
+  // },
   {
     path: '/',
     name: 'event-list',

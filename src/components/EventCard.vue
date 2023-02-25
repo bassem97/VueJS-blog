@@ -1,12 +1,19 @@
-<script setup lang="ts">
-import type { Event } from '@/typings/Event'
+<script lang="ts">
+import { toRefs } from 'vue'
 
 interface Props {
   event: Event
 }
-
-const props = defineProps<Props>()
-console.log(props.event)
+export default {
+  name: 'EventCard',
+  props: {
+    event: Event
+  },
+  setup(props: Props) {
+    const { event } = toRefs(props)
+    return event
+  }
+}
 </script>
 
 <template>
