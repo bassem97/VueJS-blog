@@ -11,6 +11,7 @@ export default {
   },
   setup(props: Props) {
     const { event } = toRefs(props)
+    console.log(event.value)
     return event
   }
 }

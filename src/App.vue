@@ -10,6 +10,10 @@ const routes: Route[] = [
   {
     label: 'About',
     name: 'about'
+  },
+  {
+    label: 'Todos',
+    name: 'todos'
   }
 ]
 </script>
