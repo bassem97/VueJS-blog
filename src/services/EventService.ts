@@ -1,5 +1,7 @@
 import type { AxiosInstance } from 'axios'
 import axios from 'axios'
+import type { Event } from '@/typings/Event'
+import type EventResponse from '@/typings/EventResponse'
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: `https://my-json-server.typicode.com/bassem97/VueJS-blog/`,
@@ -11,7 +13,10 @@ const axiosInstance: AxiosInstance = axios.create({
 })
 
 export default {
-  getEvents(): Promise<Event> {
+  getEvents(): Promise<EventResponse> {
     return axiosInstance.get('/events')
+  },
+  getEvent(id: number): Promise<Event> {
+    return axiosInstance.get(`/events/${id}`)
   }
 }

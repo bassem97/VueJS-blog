@@ -2,14 +2,10 @@
 import EventCard from '@/components/EventCard.vue'
 import { onMounted, ref } from 'vue'
 import { type Event } from '@/typings/Event'
-import type { AxiosResponse } from 'axios'
 import EventService from '@/services/EventService'
+import type EventResponse from '@/typings/EventResponse'
 
 let events = ref<Event[] | null>(null)
-
-interface EventResponse {
-  data: Event[] | null
-}
 
 onMounted(async () => {
   return EventService.getEvents()

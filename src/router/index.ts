@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import EventListView from '@/views/EventListView.vue'
+import EventDetailsView from '@/views/EventDetailsView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
+    name: 'event-list',
     component: EventListView
   },
   {
@@ -14,6 +15,12 @@ const routes: Array<RouteRecordRaw> = [
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('@/views/AboutView.vue')
+  },
+  {
+    path: '/event/:id',
+    name: 'event-details',
+    props: true,
+    component: EventDetailsView
   }
 ]
 

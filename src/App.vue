@@ -1,5 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import type Route from '@/typings/Route'
+
+const routes: Route[] = [
+  {
+    label: 'Events',
+    name: 'event-list'
+  },
+  {
+    label: 'About',
+    name: 'about'
+  }
+]
 </script>
 
 <template>
@@ -7,8 +19,9 @@ import { RouterLink, RouterView } from 'vue-router'
     <header>
       <div class="wrapper">
         <nav>
-          <RouterLink to="/">Events</RouterLink> |
-          <RouterLink to="/about">About</RouterLink>
+          <RouterLink v-for="(route, index) in routes" :key="index" :to="{ name: route.name }">
+            {{ route.label }} {{ index !== routes.length - 1 ? ' | ' : '' }}
+          </RouterLink>
         </nav>
       </div>
     </header>

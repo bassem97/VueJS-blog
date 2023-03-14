@@ -10,11 +10,13 @@ console.log(props.event)
 </script>
 
 <template>
-  <div class="event-card">
-    <!--    Display event data-->
-    <h2>{{ event.title }}</h2>
-    <span>@{{ event.time }} on {{ event.date }}</span>
-  </div>
+  <RouterLink class="event-link" :to="{ name: 'event-details', params: { id: event.id } }">
+    <div class="event-card">
+      <!--    Display event data-->
+      <h2>{{ event.title }}</h2>
+      <span>@{{ event.time }} on {{ event.date }}</span>
+    </div>
+  </RouterLink>
 </template>
 
 <style scoped>
@@ -29,5 +31,10 @@ console.log(props.event)
 .event-card:hover {
   transform: scale(1.01);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+}
+
+.event-link {
+  text-decoration: none;
+  color: inherit;
 }
 </style>
