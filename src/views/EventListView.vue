@@ -1,109 +1,31 @@
 <script setup lang="ts">
 import EventCard from '@/components/EventCard.vue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { type Event } from '@/typings/Event'
+import type { AxiosResponse } from 'axios'
+import EventService from '@/services/EventService'
 
-const events = ref<Event[]>([
-  {
-    id: 5928107,
-    category: 'animal welfare',
-    title: 'Cat Adoption Day',
-    description: 'Find your new feline friend at this event',
-    location: 'Meow Town',
-    date: 'January 28, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'kat Laydee'
-  },
-  {
-    id: 5928108,
-    category: 'animal welfare',
-    title: 'Dog Adoption Day',
-    description: 'Find your new canine friend at this event',
-    location: 'Woof Town',
-    date: 'January 29, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'doggo'
-  },
-  {
-    id: 5928109,
-    category: 'animal welfare',
-    title: 'Bird Adoption Day',
-    description: 'Find your new avian friend at this event',
-    location: 'Chirp Town',
-    date: 'January 30, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'birb'
-  },
-  {
-    id: 5928110,
-    category: 'animal welfare',
-    title: 'Fish Adoption Day',
-    description: 'Find your new aquatic friend at this event',
-    location: 'Blub Town',
-    date: 'January 31, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'fish'
-  },
-  {
-    id: 5928111,
-    category: 'animal welfare',
-    title: 'Reptile Adoption Day',
-    description: 'Find your new reptilian friend at this event',
-    location: 'Hiss Town',
-    date: 'February 1, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'snek'
-  },
-  {
-    id: 5928112,
-    category: 'animal welfare',
-    title: 'Rodent Adoption Day',
-    description: 'Find your new rodent friend at this event',
-    location: 'Squeak Town',
-    date: 'February 2, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'rat'
-  },
-  {
-    id: 5928113,
-    category: 'animal welfare',
-    title: 'Insect Adoption Day',
-    description: 'Find your new insect friend at this event',
-    location: 'Buzz Town',
-    date: 'February 3, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'bug'
-  },
-  {
-    id: 5928114,
-    category: 'animal welfare',
-    title: 'Amphibian Adoption Day',
-    description: 'Find your new amphibian friend at this event',
-    location: 'Ribbit Town',
-    date: 'February 4, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'frog'
-  },
-  {
-    id: 5928115,
-    category: 'animal welfare',
-    title: 'Arachnid Adoption Day',
-    description: 'Find your new arachnid friend at this event',
-    location: 'Crawl Town',
-    date: 'February 5, 2022',
-    time: '12:00',
-    petsAllowed: true,
-    organizer: 'spider'
-  }
-])
+let events = ref<Event[] | null>(null)
+
+interface EventResponse {
+  data: Event[] | null
+}
+
+onMounted(async () => {
+  return EventService.getEvents()
+    .then((response: EventResponse) => {
+      events.value = response.data
+      console.log(events)
+    })
+    .catch((error: any) => {
+      console.error(error)
+    })
+})
+
+// get ride of object is possibly undefined error
+if (events.value === null) {
+  events.value = []
+}
 </script>
 
 <template>

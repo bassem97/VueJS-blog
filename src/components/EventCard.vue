@@ -5,20 +5,8 @@ interface Props {
   event: Event
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  event: () =>
-    ({
-      id: 0,
-      category: '',
-      title: '',
-      description: '',
-      location: '',
-      date: '',
-      time: '',
-      petsAllowed: true,
-      organizer: ''
-    }) as Event
-})
+const props = defineProps<Props>()
+console.log(props.event)
 </script>
 
 <template>
