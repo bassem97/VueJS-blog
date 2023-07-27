@@ -1,9 +1,24 @@
 <script setup lang="ts">
-import { type Event } from '@/typings/Event'
+import type { Event } from '@/typings/Event'
 
-defineProps<{
+interface Props {
   event: Event
-}>()
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  event: () =>
+    ({
+      id: 0,
+      category: '',
+      title: '',
+      description: '',
+      location: '',
+      date: '',
+      time: '',
+      petsAllowed: true,
+      organizer: ''
+    }) as Event
+})
 </script>
 
 <template>
