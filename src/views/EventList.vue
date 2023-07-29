@@ -1,27 +1,24 @@
-<script setup lang="ts">
+<script lang="ts">
 import EventCard from '@/components/EventCard.vue'
-import { onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { type Event } from '@/typings/Event'
 import EventService from '@/services/EventService'
 import type EventResponse from '@/typings/EventResponse'
 
-let events = ref<Event[] | null>(null)
-
-onMounted(async () => {
-  return EventService.getEvents()
-    .then((response: EventResponse) => {
-      events.value = response.data
-      console.log(events)
+export default defineComponent({
+  name: 'EventList',
+  components: { EventCard },
+  data() {
+    return {
+      events: [] as Event[]
+    }
+  },
+  created() {
+    EventService.getEvents().then((response: EventResponse) => {
+      this.events = response.data
     })
-    .catch((error: any) => {
-      console.error(error)
-    })
+  }
 })
-
-// get ride of object is possibly undefined error
-if (events.value === null) {
-  events.value = []
-}
 </script>
 
 <template>
