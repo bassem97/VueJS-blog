@@ -1,6 +1,6 @@
 <script lang="ts">
 import EventCard from '@/components/EventCard.vue'
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent } from 'vue'
 import { type Event } from '@/typings/Event'
 import EventService from '@/services/EventService'
 import type EventResponse from '@/typings/EventResponse'
